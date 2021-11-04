@@ -49,7 +49,7 @@ window.onload = function(){
 
     // check if user is logged in
     onLogin( user => {
-        $('.error').innerText = '';
+        $('.error').style.display = 'none';
         if(user){
             //user just logged in
             $('#addCommentDiv').style.display = 'block';
@@ -68,13 +68,13 @@ window.onload = function(){
     ////////////////////////////////
     // button and link functionality
     $('#loginLink').onclick = function(){
-        $('.error').innerText = '';
+        $('.error').style.display = 'none';
         $('#loginDiv').style.display = 'block';
         $('#signupDiv').style.display = 'none';
     }
 
     $('#signupLink').onclick = function(){
-        $('.error').innerText = '';
+        $('.error').style.display = 'none';
         $('#loginDiv').style.display = 'none';
         $('#signupDiv').style.display = 'block';
     }
