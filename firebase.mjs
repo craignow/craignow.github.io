@@ -10,20 +10,25 @@ import { getFirestore, addDoc, getDocs, collection, serverTimestamp } from "http
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBr_oOzUnDci2oumCeyZG7c3HglY1zeTyo",
 
-    authDomain: "dogg-11f9d.firebaseapp.com",
-  
-    projectId: "dogg-11f9d",
-  
-    storageBucket: "dogg-11f9d.appspot.com",
-  
-    messagingSenderId: "546251619998",
-  
-    appId: "1:546251619998:web:e6f665cbb6aeeea2e1058f",
-  
-    measurementId: "G-2BJX7C5DKM"
-};
+    apiKey: "AIzaSyCuXa_AEYd_ry48ztkZ2vVfcBJZk-6QF1s",
+
+    authDomain: "dogg2-86976.firebaseapp.com",
+
+    projectId: "dogg2-86976",
+
+    storageBucket: "dogg2-86976.appspot.com",
+
+    messagingSenderId: "768866044892",
+
+    appId: "1:768866044892:web:fc27fbd1ecae3e42d95d19",
+
+    measurementId: "G-N1VDLK6PH5"
+
+  };
+
+
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
