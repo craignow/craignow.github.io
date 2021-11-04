@@ -1,0 +1,46 @@
+body{
+    background-color: darkslateblue;
+    color: gold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.header{
+    font-size: 35pt;
+}
+
+button{
+    background-color: transparent;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px gray;
+    color: #eee;
+}
+
+.selected{
+    background-color: gold;
+    color: purple;
+}
+
+#comments {
+    width: 80%;
+    border: solid 1px gray;
+}
+
+.comment {
+    border: solid 1px gray;
+    margin: 15px;
+    padding: 15px;
+}
+
+.error {
+    color:red;
+}
+
+a{
+    color: blue;
+    cursor: pointer;
+}
+a:hover{
+    color:blueviolet;
+}
