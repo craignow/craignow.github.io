@@ -29,7 +29,7 @@ function createButton( txt ){
 
 function createComment( commentDoc ){
     var div = document.createElement('div');
-    div.innerText = commentDoc.comment;
+    div.innerText = $('userReg')+commentDoc.comment;
     $('#comments').appendChild(div);
     div.className = 'comment';
 }
