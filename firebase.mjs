@@ -44,8 +44,8 @@ window.login = function(email,password){
     return signInWithEmailAndPassword(auth, email, password);
 }
 
-window.signup = function(email, user, password){
-    return createUserWithEmailAndPassword(auth, email, password);
+window.signup = function(email, username, password){
+    return createUserWithEmailAndPassword(auth, email, username, password);
 }
 
 window.logout = function(){
@@ -62,7 +62,7 @@ window.onLogin = function( f ){
 //////////////////////////////////////////////
 // exposed functionality for db
 window.addComment = function(comment){
-    return addDoc( commentsCollection, {user, comment, createdon: serverTimestamp()} );
+    return addDoc( commentsCollection, {username, comment, createdon: serverTimestamp()} );
 }
 
 window.forEachComment = async function( f ){
