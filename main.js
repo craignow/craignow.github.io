@@ -4,32 +4,9 @@ const $ = document.querySelector.bind(document);
 
 
 
-
-function showImage(){
-    var breed = this.innerText;
-    var priorSelected = $('.selected');
-    if(priorSelected){
-        priorSelected.className = '';
-    }
-    this.classList.add('selected');
-    fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
-    .then( r=>r.json() )
-    .then( data => {
-        // console.log( data.message )
-        $('#dog').src = data.message;
-    });
-}
-
-function createButton( txt ){
-    var btn = document.createElement('button');
-    btn.innerText = txt;
-    $('#buttons').appendChild(btn);
-    btn.onclick = showImage;
-}
-
 function createComment( commentDoc ){
     var div = document.createElement('div');
-    div.innerText = $('#email')+commentDoc.comment;
+    div.innerText = commentDoc.comment;
     $('#comments').appendChild(div);
     div.className = 'comment';
 }
@@ -37,15 +14,8 @@ function createComment( commentDoc ){
 
 window.onload = function(){
     
-    // add dog breen buttons
-    // $('.buttons').innerHTML = 'hey now'
-    this.fetch('https://dog.ceo/api/breeds/list/all')
-    .then(r=>r.json())
-    .then(data => {
-        // console.log ( data )
-        Object.keys( data.message )
-            .forEach( createButton );
-    })
+    
+    }
 
     // check if user is logged in
     onLogin( user => {
@@ -102,4 +72,3 @@ window.onload = function(){
         .catch( err => $('.error').innerText = err.message )
     }
 
-}
