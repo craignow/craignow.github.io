@@ -3,7 +3,7 @@
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
-import { getAuth, signInWithUserAndPassword, createUserWithEmailUserAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js";
 import { getFirestore, addDoc, getDocs, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
 
 
@@ -45,7 +45,7 @@ window.login = function(email,password){
 }
 
 window.signup = function(email, user, password){
-    return createUserWithEmailUserAndPassword(auth, email, user, password);
+    return createUserWithEmailAndPassword(auth, email, user, password);
 }
 
 window.logout = function(){
