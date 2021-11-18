@@ -5,7 +5,7 @@ const $ = document.querySelector.bind(document);
 
 
 
-/*function showImage(){
+function showImage(){
     var breed = this.innerText;
     var priorSelected = $('.selected');
     if(priorSelected){
@@ -25,7 +25,7 @@ function createButton( txt ){
     btn.innerText = txt;
     $('#buttons').appendChild(btn);
     btn.onclick = showImage;
-}*/
+}
 
 function createComment( commentDoc ){
     var div = document.createElement('div');
@@ -39,8 +39,13 @@ window.onload = function(){
     
     // add dog breen buttons
     // $('.buttons').innerHTML = 'hey now'
-    
-    }
+    this.fetch('https://dog.ceo/api/breeds/list/all')
+    .then(r=>r.json())
+    .then(data => {
+        // console.log ( data )
+        Object.keys( data.message )
+            .forEach( createButton );
+    })
 
     // check if user is logged in
     onLogin( user => {
@@ -97,3 +102,4 @@ window.onload = function(){
         .catch( err => $('.error').innerText = err.message )
     }
 
+}
