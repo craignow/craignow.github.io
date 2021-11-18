@@ -45,7 +45,7 @@ window.login = function(email,password){
 }
 
 window.signup = function(email, user, password){
-    return createUserWithEmailAndPassword(auth, email, user, password);
+    return createUserWithEmailAndPassword(auth, email, password);
 }
 
 window.logout = function(){
