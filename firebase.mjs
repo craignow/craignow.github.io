@@ -4,7 +4,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js";
-import { getFirestore, addDoc, getDocs, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
+import { getFirestore, addDoc, setDoc, getDoc, doc, updateDoc, getDocs, collection, serverTimestamp, deleteDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
 
 
 
@@ -37,15 +37,21 @@ const db = getFirestore(app);
 
 
 const commentsCollection = collection(db, "comments");
+const userCollection = collection(db, "users");
+
 
 //////////////////////////////////////////////
 // exposed functionality for auth
 window.login = function(email,password){
+    
     return signInWithEmailAndPassword(auth, email, password);
+
 }
 
-window.signup = function(email, username, password){
-    return createUserWithEmailAndPassword(auth, email, username, password);
+window.signup = function(email, displayId, password){
+    console.log(email, displayId, password);
+    return createUserWithEmailAndPassword(auth, email, password)
+    .then(()=>addUser(displayId, email));
 }
 
 window.logout = function(){
@@ -54,19 +60,58 @@ window.logout = function(){
 
 window.onLogin = function( f ){
     onAuthStateChanged(auth, user => {
+        
         f( user );
     });
+}
+window.saveUser = function(display, userId, pass){
+    var dbUser = getDocs(userCollection)
+    .doc(userId).set(
+        {
+            email: userId,
+            displayName: display,
+            password: pass
+        }
+    );
+   return addDoc(userCollection, dbUser);
 }
 
 
 //////////////////////////////////////////////
 // exposed functionality for db
 window.addComment = function(comment){
-    return addDoc( commentsCollection, {username, comment, createdon: serverTimestamp()} );
+    console.log(comment);
+    return addDoc( q, {username: window.username, comment, createdon: serverTimestamp()} );
+    
 }
 
 window.forEachComment = async function( f ){
-    var docs = await getDocs( commentsCollection );
-    console.log(docs);
-    docs.forEach( doc => f(doc.data()) );
+    //var docs = await getDocs( commentsCollection );
+    const q = query(commentsCollection, orderBy("createdon"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach( doc => f(doc.data(), doc.id) );
+}
+
+window.addUser = function(displayId, email)
+{
+setDoc(doc(db, "users", email),
+{email: email, username: displayId})}
+
+window.getUser = function()
+{
+    return getDoc(doc(db, "users", auth.currentUser.email));
+}
+
+window.updateMessage = function(messageID, newMessage)
+{
+    var newDoc = doc(db, "comments", messageID);
+    updateDoc(newDoc, {
+        comment: newMessage+" (edited)"
+    });
+
+}
+
+window.deleteMessage = function(messageID)
+{
+    deleteDoc(doc(db, "comments", messageID));
 }
